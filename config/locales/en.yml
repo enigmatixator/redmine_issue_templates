@@ -1,0 +1,77 @@
+en:
+  project_module_issue_templates: Issue Templates
+  permission_use_issue_templates: Use issue templates
+  permission_manage_issue_templates: Manage issue templates
+
+  label_community_issue_template: Template
+  label_community_issue_template_blank: "— Select a template —"
+  label_community_issue_templates: Issue templates
+  label_community_issue_templates_settings: Issue Templates
+  label_community_issue_templates_classic_warning: Unsupported next to the classic plugin
+  label_community_issue_template_new: New template
+  label_community_issue_template_edit: Edit template
+  label_cit_default: Default
+  label_cit_default_for: "Default for %{tracker}"
+  label_cit_global_templates: Global templates
+  label_cit_manage_global: Manage global templates
+  label_cit_watchers: Watchers
+  label_cit_checklist_items: Checklist items
+
+  field_cit_title: Title
+  field_cit_subject: Issue subject
+  field_cit_enabled: Enabled
+
+  button_cit_set_default: "Set as default for %{tracker}"
+  button_cit_clear_default: Clear default
+
+  setting_cit_confirm_overwrite: Ask before replacing fields when the tracker changes to one with a default template
+  setting_cit_apply_global: Show global templates on every project
+  text_cit_settings_scope: These options apply to every project. Create global templates from the link below. Create project templates from the project menu, after the Issue Templates module is enabled.
+  text_cit_project_index_intro: Templates for this project. When a tracker has a project default, that template is applied on the new-issue form. Otherwise the global default is used.
+  text_cit_global_index_intro: Global templates are offered on every project while "Show global templates on every project" is enabled. A project default overrides the global default for the same tracker.
+  text_cit_global_templates_fallback: These global templates are read-only here. They are used when a tracker has no project default.
+  text_cit_global_templates_disabled: Global templates are turned off in plugin settings, so they are hidden on the new-issue form.
+  text_cit_template_note: Shown next to the template name when someone picks a template. This is not the issue description.
+  text_cit_status_workflow_hint: Applied only when the current user's workflow allows that status on a new issue. Otherwise the status is skipped.
+  text_cit_assignee_hint: Applied only when that user can be assigned on the project. A global template stores the user and skips them on projects where they are not assignable.
+  text_cit_watcher_hint: Applied only for active project members the current user can see.
+  text_cit_custom_field_whitelist: "Saved and applied custom fields: single-value text, long text, boolean, list, key/value list, integer, float, and date. User, version, file, link, and multiple-value fields are ignored."
+  text_cit_checklist_items_hint: One item per line. After the issue is created, these lines are added as checklist items when Issue Checklists is installed and you can manage checklists on the project. If that plugin is missing, or you do not have that permission, the items are skipped and the issue is still created. At most 50 items are kept.
+  text_community_issue_template_confirm_overwrite: Replace the subject, description, and other template fields?
+  text_community_issue_template_default_applied: Default template applied.
+  text_community_issue_template_fields_skipped: Some fields were skipped because they are not allowed on this project.
+  text_community_issue_template_load_failed: The template could not be loaded. The form was left unchanged.
+  text_community_issue_templates_classic_warning: This is the RedmineShop Issue Templates build for Redmine 7.0 and newer. It is not the classic plugin (akiko-pusu or the agileware-jp fork). The folder name redmine_issue_templates is the same on purpose. Uninstall the classic plugin and restart Redmine before installing this one. Side-by-side use is unsupported. Both plugins add a control to the new-issue form, and Redmine cannot load two plugins with this id.
+  text_community_issue_templates_classic_detected: The classic plugin is still present (its IssueTemplate model, the issue_templates table, or another plugin folder that registers redmine_issue_templates). Remove it and restart Redmine before using this build. Do not run them side by side.
+
+  error_cit_tracker_required: Select at least one tracker.
+  error_cit_default_tracker: That tracker is not linked to this template.
+  notice_cit_default_set: Default template saved.
+  notice_cit_default_cleared: Default template cleared.
+
+  activerecord:
+    models:
+      community_issue_template: Issue template
+      community_issue_template_tracker: Issue template tracker
+      community_issue_template_default: Issue template default
+    attributes:
+      community_issue_template:
+        title: Title
+        description: Note
+        subject: Issue subject
+        content: Issue description
+        enabled: Enabled
+        position: Position
+        priority_id: Priority
+        status_id: Status
+        assigned_to_id: Assignee
+        category_id: Category
+        checklist_items: Checklist items
+    errors:
+      models:
+        community_issue_template_default:
+          attributes:
+            community_issue_template_id:
+              tracker_mismatch: is not linked to this tracker
+              project_mismatch: belongs to another project
+              must_be_global: must be a global template

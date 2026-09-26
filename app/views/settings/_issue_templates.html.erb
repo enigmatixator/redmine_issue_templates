@@ -1,0 +1,30 @@
+<p class="community-issue-templates-settings-intro"><%= l(:text_cit_settings_scope) %></p>
+<p><%= link_to l(:label_cit_manage_global), global_issue_templates_path %></p>
+
+<div class="warning" id="community-issue-templates-classic-warning">
+  <p><strong><%= l(:label_community_issue_templates_classic_warning) %></strong></p>
+  <p><%= l(:text_community_issue_templates_classic_warning) %></p>
+  <% if RedmineIssueTemplates.classic_plugin_installed? %>
+    <p><strong><%= l(:text_community_issue_templates_classic_detected) %></strong></p>
+  <% end %>
+</div>
+
+<p>
+  <label for="settings_confirm_overwrite_on_tracker_change"><%= l(:setting_cit_confirm_overwrite) %></label>
+  <input type="hidden" name="settings[confirm_overwrite_on_tracker_change]" value="0">
+  <input type="checkbox"
+         id="settings_confirm_overwrite_on_tracker_change"
+         name="settings[confirm_overwrite_on_tracker_change]"
+         value="1"
+         <%= 'checked' if RedmineIssueTemplates.confirm_overwrite_on_tracker_change? %>>
+</p>
+
+<p>
+  <label for="settings_apply_global_templates"><%= l(:setting_cit_apply_global) %></label>
+  <input type="hidden" name="settings[apply_global_templates]" value="0">
+  <input type="checkbox"
+         id="settings_apply_global_templates"
+         name="settings[apply_global_templates]"
+         value="1"
+         <%= 'checked' if RedmineIssueTemplates.apply_global_templates? %>>
+</p>

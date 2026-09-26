@@ -1,0 +1,56 @@
+<% if templates.any? %>
+  <div class="autoscroll">
+    <table class="list community-issue-templates">
+      <thead>
+        <tr>
+          <th><%= l(:field_cit_title) %></th>
+          <th><%= l(:field_cit_subject) %></th>
+          <th><%= l(:label_tracker_plural) %></th>
+          <th><%= l(:field_cit_enabled) %></th>
+          <th><%= l(:label_cit_default) %></th>
+          <% if manageable %><th></th><% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% templates.each do |template| %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td><%= template.title %></td>
+            <td><%= template.subject %></td>
+            <td><%= template.trackers.map(&:name).sort.join(', ') %></td>
+            <td><%= template.enabled? ? l(:general_text_Yes) : l(:general_text_No) %></td>
+            <td class="community-issue-template-defaults">
+              <% template.trackers.sort_by(&:name).each do |tracker| %>
+                <% if defaults[tracker.id]&.community_issue_template_id == template.id %>
+                  <span><%= l(:label_cit_default_for, tracker: tracker.name) %></span>
+                  <% if manageable %>
+                    <%= button_to l(:button_cit_clear_default),
+                                  cit_clear_default_path(template),
+                                  method: :post,
+                                  params: { tracker_id: tracker.id },
+                                  class: 'icon icon-del' %>
+                  <% end %>
+                <% elsif manageable %>
+                  <%= button_to l(:button_cit_set_default, tracker: tracker.name),
+                                cit_set_default_path(template),
+                                method: :post,
+                                params: { tracker_id: tracker.id } %>
+                <% end %>
+              <% end %>
+            </td>
+            <% if manageable %>
+              <td class="buttons">
+                <%= link_to l(:button_edit), cit_edit_path(template), class: 'icon icon-edit' %>
+                <%= link_to l(:button_delete), cit_destroy_path(template),
+                            method: :delete,
+                            data: { confirm: l(:text_are_you_sure) },
+                            class: 'icon icon-del' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

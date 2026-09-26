@@ -1,0 +1,16 @@
+.community-issue-template-notice:not([hidden]) {
+  display: block;
+  margin-top: 4px;
+}
+
+.box.tabular p.community-issue-template-checkboxes label.inline {
+  float: none;
+  width: auto;
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+
+.community-issue-template-defaults form.button_to {
+  display: inline-block;
+  margin: 0 0.4em 0.25em 0;
+}

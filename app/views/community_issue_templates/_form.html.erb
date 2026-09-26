@@ -1,0 +1,91 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'issue_templates', plugin: 'redmine_issue_templates' %>
+<% end %>
+
+<h2><%= @template.new_record? ? l(:label_community_issue_template_new) : l(:label_community_issue_template_edit) %></h2>
+
+<%= error_messages_for @template %>
+
+<%= labelled_form_for @template, url: cit_form_url(@template), html: { id: 'community-issue-template-form' } do |f| %>
+  <div class="box tabular">
+    <p><%= f.text_field :title, required: true, maxlength: 255 %></p>
+    <p>
+      <%= f.text_area :description, rows: 3, cols: 60 %>
+      <em class="info"><%= l(:text_cit_template_note) %></em>
+    </p>
+    <p><%= f.text_field :subject, maxlength: 255 %></p>
+    <p>
+      <%= f.text_area :content, rows: 10, cols: 60, class: 'wiki-edit', id: 'community_issue_template_content' %>
+    </p>
+    <%= wikitoolbar_for 'community_issue_template_content' %>
+
+    <p class="community-issue-template-checkboxes">
+      <label><%= l(:label_tracker_plural) %><span class="required"> *</span></label>
+      <% cit_editor_trackers.each do |tracker| %>
+        <label class="inline" for="community_issue_template_tracker_ids_<%= tracker.id %>">
+          <%= check_box_tag 'community_issue_template[tracker_ids][]',
+                            tracker.id,
+                            cit_selected_tracker_ids.include?(tracker.id),
+                            id: "community_issue_template_tracker_ids_#{tracker.id}" %>
+          <%= tracker.name %>
+        </label>
+      <% end %>
+    </p>
+
+    <p><%= f.select :priority_id, cit_priority_options, include_blank: true %></p>
+    <p>
+      <%= f.select :status_id, cit_status_options, include_blank: true %>
+      <em class="info"><%= l(:text_cit_status_workflow_hint) %></em>
+    </p>
+    <p>
+      <%= f.select :assigned_to_id, cit_assignee_users.map { |user| [user.name, user.id] }, include_blank: true %>
+      <em class="info"><%= l(:text_cit_assignee_hint) %></em>
+    </p>
+    <% if @project %>
+      <p><%= f.select :category_id, cit_category_options, include_blank: true %></p>
+    <% end %>
+
+    <p class="community-issue-template-checkboxes">
+      <label><%= l(:label_cit_watchers) %></label>
+      <%= hidden_field_tag 'community_issue_template[watcher_user_ids][]', '' %>
+      <% cit_watcher_users.each do |user| %>
+        <label class="inline" for="community_issue_template_watcher_user_ids_<%= user.id %>">
+          <%= check_box_tag 'community_issue_template[watcher_user_ids][]',
+                            user.id,
+                            @template.watcher_ids.include?(user.id),
+                            id: "community_issue_template_watcher_user_ids_#{user.id}" %>
+          <%= user.name %>
+        </label>
+      <% end %>
+      <em class="info"><%= l(:text_cit_watcher_hint) %></em>
+    </p>
+
+    <p><em class="info"><%= l(:text_cit_custom_field_whitelist) %></em></p>
+    <% if cit_editor_custom_fields.any? %>
+      <% cit_editor_custom_fields.each do |field| %>
+        <p>
+          <label for="community_issue_template_builtin_fields_<%= field.id %>"><%= field.name %></label>
+          <%= render 'community_issue_templates/custom_field', field: field %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <% if RedmineIssueTemplates.checklists_plugin_present? %>
+      <p>
+        <%= f.text_area :checklist_items,
+                        rows: 6,
+                        cols: 60,
+                        id: 'community_issue_template_checklist_items',
+                        label: l(:label_cit_checklist_items) %>
+        <em class="info"><%= l(:text_cit_checklist_items_hint) %></em>
+      </p>
+    <% end %>
+
+    <p><%= f.check_box :enabled %></p>
+  </div>
+
+  <p>
+    <%= f.submit l(@template.new_record? ? :button_create : :button_save) %>
+    <%= link_to l(:button_cancel), cit_index_path %>
+  </p>
+<% end %>

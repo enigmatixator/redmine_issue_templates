@@ -1,0 +1,22 @@
+<% value = cit_custom_field_value(@template, field) %>
+<% input_id = "community_issue_template_builtin_fields_#{field.id}" %>
+<% input_name = "community_issue_template[builtin_fields][#{field.id}]" %>
+<% case field.field_format.to_s %>
+<% when 'text' %>
+  <%= text_area_tag input_name, value, id: input_id, rows: 4, cols: 60 %>
+<% when 'bool' %>
+  <%= hidden_field_tag input_name, '0', id: nil %>
+  <%= check_box_tag input_name, '1', value.to_s == '1', id: input_id %>
+<% when 'list' %>
+  <%= select_tag input_name,
+                 options_for_select([['', '']] + Array(field.possible_values).map { |item| [item, item] }, value),
+                 id: input_id %>
+<% when 'enumeration' %>
+  <%= select_tag input_name,
+                 options_for_select([['', '']] + field.enumerations.map { |item| [item.name, item.id] }, value.to_s),
+                 id: input_id %>
+<% when 'date' %>
+  <%= date_field_tag input_name, value, id: input_id %>
+<% else %>
+  <%= text_field_tag input_name, value, id: input_id, maxlength: (field.max_length.to_i if field.max_length.to_i.positive?) %>
+<% end %>

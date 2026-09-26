@@ -1,0 +1,77 @@
+vi:
+  project_module_issue_templates: Mẫu issue
+  permission_use_issue_templates: Dùng mẫu issue
+  permission_manage_issue_templates: Quản lý mẫu issue
+
+  label_community_issue_template: Mẫu
+  label_community_issue_template_blank: "— Chọn mẫu —"
+  label_community_issue_templates: Mẫu issue
+  label_community_issue_templates_settings: Issue Templates
+  label_community_issue_templates_classic_warning: Không dùng cùng plugin classic
+  label_community_issue_template_new: Mẫu mới
+  label_community_issue_template_edit: Sửa mẫu
+  label_cit_default: Mặc định
+  label_cit_default_for: "Mặc định cho %{tracker}"
+  label_cit_global_templates: Mẫu toàn cục
+  label_cit_manage_global: Quản lý mẫu toàn cục
+  label_cit_watchers: Người theo dõi
+  label_cit_checklist_items: Mục checklist
+
+  field_cit_title: Tiêu đề
+  field_cit_subject: Tiêu đề issue
+  field_cit_enabled: Bật
+
+  button_cit_set_default: "Đặt làm mặc định cho %{tracker}"
+  button_cit_clear_default: Bỏ mặc định
+
+  setting_cit_confirm_overwrite: Hỏi trước khi thay field khi đổi tracker sang tracker có mẫu mặc định
+  setting_cit_apply_global: Hiện mẫu toàn cục trên mọi dự án
+  text_cit_settings_scope: Các tùy chọn này áp dụng cho mọi dự án. Tạo mẫu toàn cục từ liên kết bên dưới. Tạo mẫu theo dự án từ menu dự án, sau khi bật module Issue Templates.
+  text_cit_project_index_intro: Mẫu của dự án này. Tracker có mẫu mặc định của dự án sẽ được điền trên form issue mới. Nếu không có, hệ thống dùng mẫu mặc định toàn cục.
+  text_cit_global_index_intro: Mẫu toàn cục xuất hiện trên mọi dự án khi bật "Hiện mẫu toàn cục trên mọi dự án". Mẫu mặc định của dự án được ưu tiên hơn mẫu toàn cục cùng tracker.
+  text_cit_global_templates_fallback: Các mẫu toàn cục này chỉ để xem tại đây. Chúng được dùng khi tracker không có mẫu mặc định của dự án.
+  text_cit_global_templates_disabled: Mẫu toàn cục đang tắt trong cấu hình plugin, nên không hiện trên form issue mới.
+  text_cit_template_note: Hiện cạnh tên mẫu khi người dùng chọn mẫu. Đây không phải mô tả của issue.
+  text_cit_status_workflow_hint: Chỉ gán khi workflow của người dùng hiện tại cho phép trạng thái đó trên issue mới. Nếu không, trạng thái bị bỏ qua.
+  text_cit_assignee_hint: Chỉ gán khi người đó có thể được giao việc trên dự án. Mẫu toàn cục lưu người dùng và bỏ qua trên dự án mà họ không được giao.
+  text_cit_watcher_hint: Chỉ thêm thành viên đang hoạt động của dự án mà người dùng hiện tại nhìn thấy.
+  text_cit_custom_field_whitelist: "Custom field được lưu và áp dụng: text một giá trị, text dài, boolean, danh sách, danh sách khóa/giá trị, số nguyên, số thực và ngày. Bỏ qua kiểu user, version, file, link và field nhiều giá trị."
+  text_cit_checklist_items_hint: Mỗi mục một dòng. Sau khi issue được tạo, các dòng này được thêm thành mục checklist nếu Issue Checklists đã cài và bạn có quyền quản lý checklist trên dự án. Nếu thiếu plugin hoặc thiếu quyền đó, các mục bị bỏ qua và issue vẫn được tạo. Giữ tối đa 50 mục.
+  text_community_issue_template_confirm_overwrite: Thay tiêu đề, mô tả và các field khác của mẫu?
+  text_community_issue_template_default_applied: Đã áp dụng mẫu mặc định.
+  text_community_issue_template_fields_skipped: Một số field bị bỏ qua vì không được phép trên dự án này.
+  text_community_issue_template_load_failed: Không tải được mẫu. Form được giữ nguyên.
+  text_community_issue_templates_classic_warning: Đây là bản Issue Templates của RedmineShop cho Redmine 7.0 trở lên. Không phải plugin classic (akiko-pusu hoặc bản fork agileware-jp). Thư mục redmine_issue_templates trùng tên có chủ đích. Gỡ plugin classic và khởi động lại Redmine trước khi cài bản này. Không cài cạnh nhau. Cả hai đều thêm một control trên form issue mới, và Redmine không tải được hai plugin cùng id này.
+  text_community_issue_templates_classic_detected: Plugin classic vẫn còn (model IssueTemplate, bảng issue_templates, hoặc thư mục plugin khác đăng ký redmine_issue_templates). Hãy gỡ và khởi động lại Redmine trước khi dùng bản này. Không chạy song song.
+
+  error_cit_tracker_required: Chọn ít nhất một tracker.
+  error_cit_default_tracker: Tracker này không gắn với mẫu.
+  notice_cit_default_set: Đã lưu mẫu mặc định.
+  notice_cit_default_cleared: Đã bỏ mẫu mặc định.
+
+  activerecord:
+    models:
+      community_issue_template: Mẫu issue
+      community_issue_template_tracker: Tracker của mẫu issue
+      community_issue_template_default: Mẫu issue mặc định
+    attributes:
+      community_issue_template:
+        title: Tiêu đề
+        description: Ghi chú
+        subject: Tiêu đề issue
+        content: Mô tả issue
+        enabled: Bật
+        position: Vị trí
+        priority_id: Mức ưu tiên
+        status_id: Trạng thái
+        assigned_to_id: Người được giao
+        category_id: Hạng mục
+        checklist_items: Mục checklist
+    errors:
+      models:
+        community_issue_template_default:
+          attributes:
+            community_issue_template_id:
+              tracker_mismatch: không gắn với tracker này
+              project_mismatch: thuộc dự án khác
+              must_be_global: phải là mẫu toàn cục

@@ -1,0 +1,34 @@
+<% html_title l(:label_community_issue_templates) %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'issue_templates', plugin: 'redmine_issue_templates' %>
+<% end %>
+
+<div class="contextual">
+  <%= link_to l(:label_community_issue_template_new), cit_new_path, class: 'icon icon-add' %>
+</div>
+
+<h2><%= l(:label_community_issue_templates) %></h2>
+
+<% if @project %>
+  <p><%= l(:text_cit_project_index_intro) %></p>
+  <% if User.current.admin? %>
+    <p><%= link_to l(:label_cit_manage_global), global_issue_templates_path %></p>
+  <% end %>
+  <% unless RedmineIssueTemplates.apply_global_templates? %>
+    <p class="warning"><%= l(:text_cit_global_templates_disabled) %></p>
+  <% end %>
+<% else %>
+  <p><%= l(:text_cit_global_index_intro) %></p>
+<% end %>
+
+<%= render 'community_issue_templates/template_table', templates: @templates, defaults: @defaults, manageable: true %>
+
+<% if @project && RedmineIssueTemplates.apply_global_templates? %>
+  <% reset_cycle %>
+  <h3><%= l(:label_cit_global_templates) %></h3>
+  <p><%= l(:text_cit_global_templates_fallback) %></p>
+  <%= render 'community_issue_templates/template_table',
+             templates: @global_templates,
+             defaults: @global_defaults,
+             manageable: false %>
+<% end %>
