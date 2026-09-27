@@ -1,16 +1,18 @@
 # redmine.org directory listing draft
 
-Status: Draft
+Status: Submitted 2026-09-26 — https://www.redmine.org/plugins/redmineshop_issue_templates
 
-Do not submit this listing until the public repository exists and the quality bar in the plugin README is green. This file is the text to paste. It is not a submission.
+Listing live at https://www.redmine.org/plugins/redmineshop_issue_templates (directory identifier differs from classic `redmine_issue_templates`).
 
 ## Plugin name
 
-Issue Templates
+Issue Templates (RedmineShop)
 
 ## Identifier / website
 
-https://github.com/redmineshop/redmine_issue_templates
+Directory identifier: `redmineshop_issue_templates` (classic listing already owns `redmine_issue_templates`)
+
+Website: https://github.com/redmineshop/redmine_issue_templates
 
 ## Version
 

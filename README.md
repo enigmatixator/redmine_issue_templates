@@ -3,6 +3,8 @@
 [![CI](https://github.com/redmineshop/redmine_issue_templates/actions/workflows/ci.yml/badge.svg)](https://github.com/redmineshop/redmine_issue_templates/actions/workflows/ci.yml)
 [![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](LICENSE)
 
+**Last maintained:** 2026-09-28
+
 **Source on GitHub:** [github.com/redmineshop/redmine_issue_templates](https://github.com/redmineshop/redmine_issue_templates)
 
 Start a new issue from a reusable template on Redmine 7.0. When Issue Checklists is installed, a template can add checklist items after the issue is created.

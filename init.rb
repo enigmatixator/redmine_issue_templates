@@ -19,6 +19,7 @@ Redmine::Plugin.register :redmine_issue_templates do
   author_url 'https://redmineshop.com'
   description 'Start a new issue from a reusable template on Redmine 7.0. Soft checklist seed when Issue Checklists is installed.'
   version RedmineIssueTemplates::VERSION
+  url 'https://github.com/redmineshop/redmine_issue_templates'
 
   # Founder decision 2026-09-24: Redmine 7.0 and newer only.
   requires_redmine version_or_higher: '7.0'
