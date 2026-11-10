@@ -4,7 +4,7 @@
   <label for="community_issue_template_id"><%= l(:label_community_issue_template) %></label>
   <%= select_tag(
         'community_issue_template_id',
-        options_for_select(template_form.option_pairs),
+        options_for_select(template_form.option_pairs, params[:community_issue_template_id]),
         id: 'community_issue_template_id',
         data: template_form.select_data(
           project_community_issue_template_path(issue.project, '__ID__')
